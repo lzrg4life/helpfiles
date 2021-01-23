@@ -1,0 +1,11 @@
+[Service]
+ExecStart=/usr/bin/node --use_strict /PATH/TO/YOUR/APP/bin/www
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=StearnsServicesWebsite
+User=node
+Group=node
+
+[Install]
+WantedBy=multi-user.target
