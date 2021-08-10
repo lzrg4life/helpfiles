@@ -53,7 +53,7 @@ nav {
 }
 ```
 
-## Partials / Modyules
+## Partials / Modules
 
 `Partials` are files that start with an underscore and don't get compiled.
 
