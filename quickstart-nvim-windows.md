@@ -55,27 +55,20 @@ call plug#end()
 
 Close neovim and reopen it
 
-Then do `:PlugInstall`
+Then do `:PlugInstall` and close and reopen neovim
 
-Then add the following
+Then do `:CocInstall coc-json` since it seems to be needed for some others to
+work right
 
-```vim
-syntax on
-set t_Co=256
-set cursorline
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-" lightline
-" let g:lightline = { 'colorscheme': 'onehalfdark' }
+Then close neovim
 
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+Now symlink the `./more/init.vim` file to the neovim profile location:
+
+```powershell
+# in an admin powershell opened in the root of this repo
+Remove-Item $VPROFILE
+New-Item -ItemType SymbolicLink -Path $VPROFILE -Target $PWD\more\init.vim 
 ```
-
-Do `:CocInstall coc-json` since it seems to be needed for some others to work right
 
 ## Setup Conquer of Completion
 
@@ -83,7 +76,6 @@ Refer to the list of all extensions [here](https://github.com/neoclide/coc.nvim/
 
 ```vim
 :CocInstall coc-diagnostic coc-highlight
-
 :CocInstall coc-tsserver coc-css coc-html coc-htmlhint coc-html-css-support coc-emmet
 :CocInstall coc-markdownlint coc-powershell coc-sql
 
@@ -99,7 +91,6 @@ For files: `HKEY_CURRENT_USER\Software\Classes\*\shell`
 
 1. Create a new key under "shell"
 2. Create a new key under (1) named `command`
-3. Set the `default` property of (2) to be `path\to\exe "%1"` for the full file
-path or `path\to\exe "%V"` for directory
+3. Set the `default` property of (2) to be `path\to\exe "%1"`
 4. (optional) Add a string value named icon under (1) with a value that is a
 path to an icon
