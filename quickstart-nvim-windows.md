@@ -90,3 +90,16 @@ Refer to the list of all extensions [here](https://github.com/neoclide/coc.nvim/
 :CocInstall coc-viml coc-xml coc-yaml
 ```
 
+## Add to explorer context menu
+
+Open regedit.exe
+
+For folders: `HKEY_CURRENT_USER\Software\Classes\directory\shell`
+For files: `HKEY_CURRENT_USER\Software\Classes\*\shell`
+
+1. Create a new key under "shell"
+2. Create a new key under (1) named `command`
+3. Set the `default` property of (2) to be `path\to\exe "%1"` for the full file
+path or `path\to\exe "%V"` for directory
+4. (optional) Add a string value named icon under (1) with a value that is a
+path to an icon
