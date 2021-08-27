@@ -4,7 +4,7 @@ This will get you set up with node, express and typescript.
 
 This is a summary of [this developer.okta blog post](https://developer.okta.com/blog/2018/11/15/node-express-typescript)
 
-# Initial Prep
+## Initial Prep
 
 Have a current version of node/npm installed.
 
@@ -171,7 +171,7 @@ import * as shell from "shelljs";
 shell.cp( "-R", "src/views", "dist/" );
 ```
 
-## .env 
+## .env
 
 ```env
 # Set to production when deploying to production
