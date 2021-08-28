@@ -6,6 +6,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
+set nu
 syntax on
 set t_Co=256
 set cursorline

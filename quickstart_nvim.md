@@ -6,13 +6,23 @@ nodejs >= 12.12 (for conquer of completion)
 
 ## "Install" it
 
+### Windows
+
 [Download the Neovim win64 zip file for the latest release](https://github.com/neovim/neovim/releases)
 
 Extract the file to `C:\tools\Neovim` such that `nvim.exe` is at `C:\tools\Neovim\bin\nvim.exe`
 
-## Create powershell aliases
+### Linux
 
-Create aliases in your powershell `$PROFILE`.
+Install it from snap:
+
+```sh
+snap install nvim --classic
+```
+
+## Create shell aliases
+
+Powershell:
 
 ```powershell
 New-Alias -name "v" "C:\tools\Neovim\bin\nvim.exe"
@@ -20,15 +30,31 @@ New-Alias -name "vq" "C:\tools\Neovim\bin\nvim-qt.exe"
 VPROFILE = "$HOME\AppData\Local\nvim\init.vim"
 ```
 
+Bash:
+
+```sh
+alias v='nvim'
+VPROFILE='$HOME/.config/nvim/init.vim'
+```
+
 ## Set up init.vim
 
 If you need to check where to put the init.vim file, run nvim.exe and do
 `:help init` and locate the line that says where the init file goes for Windows.
 
-Create the file
+Create the init.vim file...
+
+Powershell:
 
 ```powershell
 New-Item -Force "$HOME\AppData\Local\nvim\init.vim"
+```
+
+Bash:
+
+```sh
+mkdir /.config/nvim
+touch $VPROFILE
 ```
 
 ## Set up vim-plug
@@ -37,10 +63,23 @@ Refer to the steps [in the official repo](https://github.com/junegunn/vim-plug)
 
 Download the file to the correct location
 
+### Download it
+
+Powershell:
+
 ```powershell
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 ```
+
+Bash:
+
+```sh
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+### Set it up
 
 Add the following to `init.vim`
 
@@ -64,10 +103,19 @@ Then close neovim
 
 Now symlink the `./more/init.vim` file to the neovim profile location:
 
+Powershell:
+
 ```powershell
 # in an admin powershell opened in the root of this repo
 Remove-Item $VPROFILE
 New-Item -ItemType SymbolicLink -Path $VPROFILE -Target $PWD\more\init.vim 
+```
+
+Bash:
+
+```sh
+rm $VPROFILE
+ln ./more/init.vim $VPROFILE
 ```
 
 ## Setup Conquer of Completion
@@ -82,7 +130,7 @@ Refer to the list of all extensions [here](https://github.com/neoclide/coc.nvim/
 :CocInstall coc-viml coc-xml coc-yaml
 ```
 
-## Add to explorer context menu
+## Add nvim to windows explorer context menu
 
 Open regedit.exe
 
