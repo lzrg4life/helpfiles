@@ -1,5 +1,9 @@
 # Firebase Quickstart
 
+Documentation[https://firebase.google.com/docs/cli?authuser=0#windows-npm]
+
+
+
 ```sh
 # installing
 npm install --global firebase
@@ -7,14 +11,19 @@ npm install --global firebase
 # logging in (opens browser to sign in there)
 firebase login
 
-# initialize a project
+# List projects
+firebase projects:list
+
+# Initialize a project
 firebase init
 
 # start the emulators
-# note this should be run inside a firebase project
 firebase emulators:start
 
-# deploy hosting
+# Temp URL to share changes
+firebase hosting:channel:deploy
+
+# Deploy hosting
 firebase deploy --only hosting
 ```
 
