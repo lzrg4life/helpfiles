@@ -15,7 +15,6 @@ ssh-add -l
 
 Add the line from id_rsa.pub to a new line in the `~/.ssh/authorized_keys` file
 
-
 ## Linux permissions for ssh
 
 ```
