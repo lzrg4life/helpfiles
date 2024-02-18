@@ -1,0 +1,51 @@
+Windows Registry Editor Version 5.00
+
+;
+; References:
+; .reg file: 
+;    https://stackoverflow.com/questions/183901/how-do-i-start-powershell-from-windows-explorer
+;
+; details for context menu options: 
+;    https://stackoverflow.com/questions/20449316/how-add-context-menu-item-to-windows-explorer-for-folders
+;
+;
+
+
+;
+; PowerShell Core
+;
+
+[HKEY_CURRENT_USER\Software\Classes\directory\Background\shell\PowerShellCore]
+@="Open PowerShell Core window here"
+"NoWorkingDirectory"=""
+[HKEY_CURRENT_USER\Software\Classes\directory\Background\shell\PowerShellCore\command]
+@="C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoExit -Command Set-Location -LiteralPath '%V'"
+
+[HKEY_CURRENT_USER\Software\Classes\directory\shell\PowerShellCore]
+@="Open PowerShell Core window here"
+"NoWorkingDirectory"=""
+[HKEY_CURRENT_USER\Software\Classes\directory\shell\PowerShellCore\command]
+@="C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoExit -Command Set-Location -LiteralPath '%V'"
+
+
+;
+; Sublime Text
+;
+
+[HKEY_CURRENT_USER\Software\Classes\directory\Background\shell\SublimeText]
+@="Open Sublime Text here"
+"NoWorkingDirectory"=""
+[HKEY_CURRENT_USER\Software\Classes\directory\Background\shell\SublimeText\command]
+@="C:\\Program Files\\Sublime Text\\sublime_text.exe \"%V\""
+
+[HKEY_CURRENT_USER\Software\Classes\directory\shell\SublimeText]
+@="Open Sublime Text here"
+"NoWorkingDirectory"=""
+[HKEY_CURRENT_USER\Software\Classes\directory\shell\SublimeText\command]
+@="C:\\Program Files\\Sublime Text\\sublime_text.exe \"%V\""
+
+[HKEY_CURRENT_USER\Software\Classes\*\shell\SublimeText]
+@="Open With Sublime Text"
+"NoWorkingDirectory"=""
+[HKEY_CURRENT_USER\Software\Classes\*\shell\SublimeText\command]
+@="C:\\Program Files\\Sublime Text\\sublime_text.exe \"%1\""
