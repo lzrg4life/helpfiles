@@ -27,3 +27,11 @@ deactivate
 pip install virtualenvwrapper
 # windows: pip install virtualenvwrapper-win
 ```
+
+## Creating executable
+
+```sh
+pip install pyinstaller
+cd project
+pyinstaller -- onefile --icon=filename.ico --windowed main.py 
+```
